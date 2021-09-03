@@ -12,7 +12,15 @@ import {
 import { Server, Socket } from 'socket.io';
 
 // 포트랑 namespace 설정은 선택사항, 포트 설정 안하면 http랑 동일한 포트 가지게 됨, namespace는 소켓 생성자로 전달되는 속성
-@WebSocketGateway(81, { namespace: 'chat' }) 
+// @WebSocketGateway(81, { namespace: 'chat' })
+@WebSocketGateway(81, {
+  namespace: 'chat',
+  cors: {
+    origin: 'http://localhost:3000',
+    // methods: ['GET', 'POST'],
+    credential: true,
+  },
+})
 export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect{
 
   @WebSocketServer()
