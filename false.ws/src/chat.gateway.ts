@@ -54,7 +54,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
       if (id !== client.id) this.server.sockets[id].emit(event, message); // 내가 아닌사람에게 event에 해당할때 메시지 전송
   }
 
-  @SubscribeMessage('test') //send 메시지 구독
+  @SubscribeMessage('send') //send 메시지 구독
   sendMessage(@MessageBody() data: string, @ConnectedSocket() client) {
     const [room, nickname, message] = data; // 각 요소를 data에 저장
     console.log(`${client.id} : ${data}`); 
